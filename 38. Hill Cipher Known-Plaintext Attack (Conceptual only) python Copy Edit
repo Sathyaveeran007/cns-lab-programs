@@ -1,0 +1,8 @@
+# Known plaintext-ciphertext pairs used to solve key matrix (requires numpy)
+import numpy as np
+
+P = np.array([[7, 8], [11, 11]])  # plaintext pairs
+C = np.array([[15, 17], [20, 9]]) # ciphertext pairs
+
+K = (np.dot(C, np.linalg.inv(P)) % 26).astype(int)
+print("Recovered Key Matrix:", K)
