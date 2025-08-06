@@ -1,0 +1,9 @@
+# CBC-MAC example: given T = MAC(K, X), attacker computes MAC(K, X || (X ⊕ T))
+def xor_bytes(b1, b2):
+    return bytes(a ^ b for a, b in zip(b1, b2))
+
+X = b"HELLO123"
+T = b"\x10\x20\x30\x40\x50\x60\x70\x80"  # Assume MAC result
+X2 = xor_bytes(X, T)
+
+print("Forgery block (X XOR T):", X2)
