@@ -1,0 +1,9 @@
+def additive_attack(ciphertext):
+    most_freq = Counter(ciphertext).most_common(1)[0][0]
+    assumed_key = (ord(most_freq) - ord('e')) % 26
+    return ''.join(
+        chr((ord(c) - ord('a') - assumed_key) % 26 + ord('a')) if c.isalpha() else c
+        for c in ciphertext
+    )
+
+print(additive_attack("khoor"))  # Should return "hello"
