@@ -1,0 +1,13 @@
+from Crypto.Cipher import DES3
+from Crypto.Random import get_random_bytes
+
+def encrypt_cbc_3des(data, key, iv):
+    cipher = DES3.new(key, DES3.MODE_CBC, iv)
+    padded = data + b"\x00" * (8 - len(data) % 8)
+    return cipher.encrypt(padded)
+
+key = DES3.adjust_key_parity(get_random_bytes(24))
+iv = get_random_bytes(8)
+plaintext = b"HELLOCRYPTO"
+ciphertext = encrypt_cbc_3des(plaintext, key, iv)
+print("Encrypted (3DES CBC):", ciphertext)
