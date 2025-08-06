@@ -1,0 +1,9 @@
+from collections import Counter
+
+def frequency_attack(ciphertext):
+    freq = Counter(c for c in ciphertext.lower() if c.isalpha())
+    common = 'etaoinshrdlcumwfgypbvkjxqz'
+    mapping = dict(zip([x[0] for x in freq.most_common()], common))
+    return ''.join(mapping.get(c, c) for c in ciphertext.lower())
+
+print(frequency_attack("wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj"))
