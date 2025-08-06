@@ -1,0 +1,7 @@
+def affine_encrypt(text, a, b):
+    return ''.join(
+        chr(((a * (ord(c) - ord('a')) + b) % 26) + ord('a')) if c.isalpha() else c
+        for c in text.lower()
+    )
+
+print(affine_encrypt("hello", 5, 8))  # a=5, b=8
