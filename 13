@@ -1,0 +1,2 @@
+# Conceptual — use matrix inverse from known plaintext-ciphertext pairs.
+# Implementation requires numpy + modular inverse.
