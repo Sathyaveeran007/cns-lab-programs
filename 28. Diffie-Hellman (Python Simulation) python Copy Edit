@@ -1,0 +1,17 @@
+# Public values
+q = 353
+a = 3
+
+# Alice and Bob secrets
+x_a = 97
+x_b = 233
+
+# Exchange
+y_a = pow(a, x_a, q)
+y_b = pow(a, x_b, q)
+
+# Shared key
+k_a = pow(y_b, x_a, q)
+k_b = pow(y_a, x_b, q)
+
+print("Shared key:", k_a == k_b, k_a)
