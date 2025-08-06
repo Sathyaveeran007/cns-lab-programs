@@ -1,0 +1,26 @@
+from collections import Counter
+
+def mod_inverse(a, m):
+    for x in range(1, m):
+        if (a * x) % m == 1:
+            return x
+    return None
+
+def affine_decrypt(ciphertext, a, b):
+    a_inv = mod_inverse(a, 26)
+    if a_inv is None:
+        return "Invalid key"
+    plaintext = ''
+    for char in ciphertext.upper():
+        if char.isalpha():
+            c = ord(char) - ord('A')
+            p = (a_inv * (c - b)) % 26
+            plaintext += chr(p + ord('A'))
+        else:
+            plaintext += char
+    return plaintext
+
+# Try breaking cipher assuming 'B' -> 'E' and 'U' -> 'T'
+# This is a brute-force demonstration
+ciphertext = "BUBUBUBUBUBU"
+for a
