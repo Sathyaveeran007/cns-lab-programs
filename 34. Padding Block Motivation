@@ -1,0 +1,8 @@
+# Padding even when not needed helps prevent:
+# - Padding oracle attacks
+# - Ambiguity in decryption
+
+msg = b'ABCDEF12'
+pad = b'\x80' + b'\x00' * 7  # 1 followed by 0s
+padded = msg + pad
+print("Padded message:", padded)
