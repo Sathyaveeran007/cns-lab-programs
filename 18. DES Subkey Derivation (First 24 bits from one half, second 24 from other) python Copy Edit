@@ -1,0 +1,17 @@
+def split_key(key_56bit):
+    left = key_56bit[:28]
+    right = key_56bit[28:]
+    return left, right
+
+def generate_subkeys(left, right):
+    # Simulate subkeys from disjoint halves (this is simplified)
+    subkeys = []
+    for i in range(16):
+        subkey = left[i:i+24] + right[i:i+24]
+        subkeys.append(subkey)
+    return subkeys
+
+key = '11110000110011001010101011110101010101100110011110001111'  # 56 bits
+left, right = split_key(key)
+subkeys = generate_subkeys(left, right)
+print("Subkeys:", subkeys[:2])  # Show first 2 as example
