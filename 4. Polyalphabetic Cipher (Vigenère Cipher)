@@ -1,0 +1,14 @@
+def vigenere_encrypt(plaintext, key):
+    result = ""
+    key = key.lower()
+    key_idx = 0
+    for char in plaintext.lower():
+        if char.isalpha():
+            shift = ord(key[key_idx % len(key)]) - ord('a')
+            result += chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+            key_idx += 1
+        else:
+            result += char
+    return result
+
+print(vigenere_encrypt("sendmoremoney", "key"))
