@@ -1,0 +1,13 @@
+def caesar_encrypt(plaintext, key):
+    result = ""
+    for char in plaintext:
+        if char.isalpha():
+            shift = key % 26
+            base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            result += char
+    return result
+
+# Example
+print(caesar_encrypt("HELLO", 3))  # KHOOR
