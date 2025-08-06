@@ -1,0 +1,7 @@
+def pad_message(message, block_size=8):
+    padding_needed = block_size - (len(message) % block_size)
+    return message + chr(1) + chr(0) * (padding_needed - 1)
+
+msg = "HELLOWORLD"
+padded = pad_message(msg)
+print(f"Padded message: {padded.encode()}")
