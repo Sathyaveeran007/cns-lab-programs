@@ -1,0 +1,33 @@
+def prepare_text(text):
+    text = text.upper().replace("J", "I")
+    text = ''.join(filter(str.isalpha, text))
+    i = 0
+    result = ''
+    while i < len(text):
+        a = text[i]
+        b = text[i + 1] if i + 1 < len(text) else 'X'
+        if a == b:
+            result += a + 'X'
+            i += 1
+        else:
+            result += a + b
+            i += 2
+    if len(result) % 2 != 0:
+        result += 'X'
+    return [result[i:i+2] for i in range(0, len(result), 2)]
+
+def playfair_encrypt(pair, matrix):
+    rows, cols = zip(*[divmod(matrix.index(c), 5) for c in pair])
+    if rows[0] == rows[1]:
+        return matrix[rows[0]*5 + (cols[0]+1)%5] + matrix[rows[1]*5 + (cols[1]+1)%5]
+    elif cols[0] == cols[1]:
+        return matrix[((rows[0]+1)%5)*5 + cols[0]] + matrix[((rows[1]+1)%5)*5 + cols[1]]
+    else:
+        return matrix[rows[0]*5 + cols[1]] + matrix[rows[1]*5 + cols[0]]
+
+message = "Must see you over Cadogan West. Coming at once."
+matrix = "MFHIJKUNOPZVWXYLEARGBDSTC"  # I/J combined
+
+pairs = prepare_text(message)
+encrypted = ''.join(playfair_encrypt(pair, matrix) for pair in pairs)
+print("Encrypted:", encrypted)
