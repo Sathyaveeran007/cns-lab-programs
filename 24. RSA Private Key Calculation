@@ -1,0 +1,15 @@
+def gcd_extended(a, b):
+    if b == 0: return a, 1, 0
+    g, x1, y1 = gcd_extended(b, a % b)
+    return g, y1, x1 - (a // b) * y1
+
+def rsa_private_key(e, n):
+    for p in range(2, n):
+        if n % p == 0:
+            q = n // p
+            break
+    phi = (p - 1) * (q - 1)
+    _, d, _ = gcd_extended(e, phi)
+    return d % phi
+
+print("Private key d:", rsa_private_key(31, 3599))
