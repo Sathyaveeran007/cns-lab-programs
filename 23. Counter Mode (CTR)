@@ -1,0 +1,14 @@
+def counter_mode_encrypt(plaintext, key_func, counter_start=0):
+    result = ""
+    for i in range(len(plaintext)):
+        ctr = chr((counter_start + i) % 256)
+        keystream = key_func(ctr)
+        result += chr(ord(plaintext[i]) ^ ord(keystream))
+    return result
+
+def dummy_key(x):  # Simple key function for demonstration
+    return chr((ord(x) * 3 + 5) % 256)
+
+pt = "secret"
+ct = counter_mode_encrypt(pt, dummy_key)
+print("CTR ciphertext:", [ord(c) for c in ct])
