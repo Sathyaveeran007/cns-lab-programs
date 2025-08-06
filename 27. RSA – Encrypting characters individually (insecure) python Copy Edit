@@ -1,0 +1,8 @@
+# Encryption of A-Z separately using RSA is insecure due to small plaintext space
+# Brute-force all 26 possible encryptions
+
+def rsa_encrypt(char_num, e, n):
+    return pow(char_num, e, n)
+
+for i in range(26):
+    print(f"{chr(i+65)} -> {rsa_encrypt(i, 3, 187)}")
