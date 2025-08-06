@@ -1,0 +1,9 @@
+def additive_freq_attack(ciphertext):
+    for k in range(26):
+        plaintext = ''.join(
+            chr((ord(c) - ord('a') - k) % 26 + ord('a')) if c.isalpha() else c
+            for c in ciphertext
+        )
+        print(f"Key {k}: {plaintext}")
+
+additive_freq_attack("khoor")  # Encrypted 'hello' with key=3
