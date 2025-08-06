@@ -1,0 +1,23 @@
+def prepare_input(text):
+    text = text.upper().replace("J", "I").replace(" ", "")
+    return [text[i:i+2] for i in range(0, len(text), 2)]
+
+def playfair_decrypt(pair, matrix):
+    rows, cols = zip(*[divmod(matrix.index(c), 5) for c in pair])
+    if rows[0] == rows[1]:
+        return matrix[rows[0]*5 + (cols[0]-1)%5] + matrix[rows[1]*5 + (cols[1]-1)%5]
+    elif cols[0] == cols[1]:
+        return matrix[((rows[0]-1)%5)*5 + cols[0]] + matrix[((rows[1]-1)%5)*5 + cols[1]]
+    else:
+        return matrix[rows[0]*5 + cols[1]] + matrix[rows[1]*5 + cols[0]]
+
+cipher_text = """KXJEY UREBE ZWEHE WRYTU HEYFS
+KREHE GOYFI WTTTU OLKSY CAJPO
+BOTEI ZONTX BYBNT GONEY CUZWR
+GDSON SXBOU YWRHE BAAHY USEDQ""".replace("\n", "").replace(" ", "")
+
+matrix = "MONARCHYBDEFGIKLPQSTUVWXZ"  # Example key matrix (replace if needed)
+pairs = prepare_input(cipher_text)
+
+decrypted = ''.join(playfair_decrypt(pair, matrix) for pair in pairs)
+print("Decrypted:", decrypted)
