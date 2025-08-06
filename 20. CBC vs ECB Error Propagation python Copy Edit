@@ -1,0 +1,12 @@
+# Conceptual illustration:
+plaintext = ["P1", "P2", "P3"]
+ciphertext = ["C1", "C2", "C3"]
+
+# In ECB, error affects only one block
+ecb_error = "Error in C2 → only P2 corrupted"
+
+# In CBC, error in C1 affects both P1 and P2
+cbc_error = "Error in C1 → P1 and P2 corrupted"
+
+print("ECB:", ecb_error)
+print("CBC:", cbc_error)
