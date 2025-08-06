@@ -1,0 +1,13 @@
+def otp_vigenere_encrypt(plaintext, key):
+    ciphertext = ""
+    for i, char in enumerate(plaintext.lower()):
+        if char.isalpha():
+            shift = key[i % len(key)]
+            enc = (ord(char) - ord('a') + shift) % 26
+            ciphertext += chr(enc + ord('a'))
+        else:
+            ciphertext += char
+    return ciphertext
+
+key = [9, 0, 1, 7, 23, 15, 21, 14, 11, 11, 2, 8, 9]
+print(otp_vigenere_encrypt("sendmoremoney", key))
