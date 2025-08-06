@@ -1,0 +1,4 @@
+# Leaking private key = generate new keys completely, not just change e and d.
+# So, just a concept (no complex code): this is **not safe**.
+
+print("If Bob leaks private key, changing just e and d is NOT safe. New n must be generated.")
