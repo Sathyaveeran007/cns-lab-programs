@@ -1,0 +1,25 @@
+def xor_blocks(a, b):
+    return ''.join(chr(ord(x) ^ ord(y)) for x, y in zip(a, b))
+
+def affine_encrypt_block(block, a=5, b=8):
+    return ''.join(chr(((ord(c) * a + b) % 256)) for c in block)
+
+def affine_decrypt_block(block, a=5, b=8):
+    a_inv = pow(a, -1, 256)
+    return ''.join(chr(((ord(c) - b) * a_inv) % 256) for c in block)
+
+def cbc_encrypt(plaintext, key_func, iv):
+    blocks = [plaintext[i:i+len(iv)] for i in range(0, len(plaintext), len(iv))]
+    ciphertext = ""
+    prev = iv
+    for block in blocks:
+        block = xor_blocks(block, prev)
+        enc = key_func(block)
+        ciphertext += enc
+        prev = enc
+    return ciphertext
+
+iv = "initvect"
+plaintext = "testtext"
+ciphertext = cbc_encrypt(plaintext, affine_encrypt_block, iv)
+print("CBC ciphertext:", [ord(c) for c in ciphertext])
