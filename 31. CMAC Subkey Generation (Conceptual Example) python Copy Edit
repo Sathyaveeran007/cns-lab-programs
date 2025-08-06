@@ -1,0 +1,12 @@
+def left_shift_one(bitstring):
+    shifted = bitstring[1:] + "0"
+    return shifted
+
+# 128-bit zero block
+zero_block = "0" * 128
+L = "101010..."  # result after encryption of zero_block with AES (dummy here)
+
+# Subkey generation
+K1 = left_shift_one(L)
+# If MSB was 1, XOR with Rb
+print("First subkey (K1):", K1)
