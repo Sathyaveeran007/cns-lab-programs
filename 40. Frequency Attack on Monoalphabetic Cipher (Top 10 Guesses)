@@ -1,0 +1,10 @@
+def top10_guesses(ciphertext):
+    freq = Counter(c for c in ciphertext if c.isalpha())
+    english = 'etaoinshrdlcumwfgypbvkjxqz'
+    cipher_letters = [x[0] for x in freq.most_common()]
+    for i in range(10):
+        mapping = dict(zip(cipher_letters, english[i:] + english[:i]))
+        guess = ''.join(mapping.get(c, c) for c in ciphertext)
+        print(f"Guess {i+1}: {guess}")
+
+top10_guesses("wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj")
