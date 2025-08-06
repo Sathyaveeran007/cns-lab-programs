@@ -1,0 +1,15 @@
+from collections import Counter
+
+ciphertext = "53‡‡†305))6*;4826)4‡.)4‡);806*;48†8¶60))85;;]8*;:‡*8†83..."
+# Placeholder: Full ciphertext was truncated above
+
+# Frequency analysis
+freq = Counter(ciphertext)
+print(freq.most_common())
+
+# Manually map symbols to letters (you would update this based on freq)
+mapping = {'‡': 'e', '†': 't', '5': 'h', '3': 'o'}  # etc.
+
+# Decrypt
+plaintext = ''.join(mapping.get(c, c) for c in ciphertext)
+print(plaintext)
