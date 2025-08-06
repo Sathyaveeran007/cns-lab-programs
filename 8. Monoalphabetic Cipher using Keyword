@@ -1,0 +1,11 @@
+def generate_cipher_alphabet(keyword):
+    keyword = ''.join(sorted(set(keyword), key=keyword.index)).lower()
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    cipher = keyword + ''.join(c for c in alphabet if c not in keyword)
+    return dict(zip(alphabet, cipher))
+
+def mono_encrypt(text, key):
+    mapping = generate_cipher_alphabet(key)
+    return ''.join(mapping.get(c, c) for c in text.lower())
+
+print(mono_encrypt("hello", "CIPHER"))
