@@ -1,0 +1,7 @@
+def generate_des_keys(initial_keys):
+    # Normally, 16 subkeys are generated; here we just reverse them for decryption
+    return initial_keys[::-1]
+
+# Example
+subkeys = [f"K{i+1}" for i in range(16)]
+print("Decryption keys:", generate_des_keys(subkeys))
