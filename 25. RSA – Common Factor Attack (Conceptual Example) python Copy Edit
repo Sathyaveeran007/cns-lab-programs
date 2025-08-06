@@ -1,0 +1,16 @@
+import math
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+n = 187  # Example modulus
+pt_block = 17  # Suppose we know this block
+
+# Simulate if this helps attacker
+common = gcd(pt_block, n)
+if common != 1:
+    print("Common factor found with n:", common)
+else:
+    print("No common factor found.")
