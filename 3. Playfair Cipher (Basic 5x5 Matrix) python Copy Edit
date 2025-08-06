@@ -1,0 +1,47 @@
+def prepare_text(text):
+    text = text.replace("j", "i").lower()
+    result = ""
+    i = 0
+    while i < len(text):
+        a = text[i]
+        b = text[i+1] if i+1 < len(text) else 'x'
+        if a == b:
+            result += a + 'x'
+            i += 1
+        else:
+            result += a + b
+            i += 2
+    return result
+
+def create_matrix(keyword):
+    keyword = ''.join(sorted(set(keyword), key=keyword.index)).replace("j", "i")
+    matrix = [c for c in keyword]
+    for c in "abcdefghiklmnopqrstuvwxyz":
+        if c not in matrix:
+            matrix.append(c)
+    return [matrix[i:i+5] for i in range(0, 25, 5)]
+
+def find_position(matrix, char):
+    for i in range(5):
+        for j in range(5):
+            if matrix[i][j] == char:
+                return i, j
+    return None
+
+def playfair_encrypt(plaintext, keyword):
+    matrix = create_matrix(keyword)
+    text = prepare_text(plaintext)
+    cipher = ""
+    for i in range(0, len(text), 2):
+        a, b = text[i], text[i+1]
+        r1, c1 = find_position(matrix, a)
+        r2, c2 = find_position(matrix, b)
+        if r1 == r2:
+            cipher += matrix[r1][(c1+1)%5] + matrix[r2][(c2+1)%5]
+        elif c1 == c2:
+            cipher += matrix[(r1+1)%5][c1] + matrix[(r2+1)%5][c2]
+        else:
+            cipher += matrix[r1][c2] + matrix[r2][c1]
+    return cipher.upper()
+
+print(playfair_encrypt("mustseeyou", "keyword"))
