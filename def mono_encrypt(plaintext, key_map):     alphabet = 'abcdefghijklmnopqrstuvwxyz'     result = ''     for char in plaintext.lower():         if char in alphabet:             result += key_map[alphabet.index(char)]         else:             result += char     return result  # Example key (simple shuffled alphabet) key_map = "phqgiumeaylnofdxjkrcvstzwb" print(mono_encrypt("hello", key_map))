@@ -1,0 +1,13 @@
+def mono_encrypt(plaintext, key_map):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    result = ''
+    for char in plaintext.lower():
+        if char in alphabet:
+            result += key_map[alphabet.index(char)]
+        else:
+            result += char
+    return result
+
+# Example key (simple shuffled alphabet)
+key_map = "phqgiumeaylnofdxjkrcvstzwb"
+print(mono_encrypt("hello", key_map))
