@@ -1,0 +1,3 @@
+# Same message + different `k` => different signatures
+# In RSA: deterministic, so repeating gives same signature (not good)
+print("DSA signatures use random k → different outputs even for same message")
