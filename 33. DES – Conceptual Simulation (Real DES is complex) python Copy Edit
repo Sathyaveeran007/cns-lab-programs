@@ -1,0 +1,9 @@
+from Crypto.Cipher import DES
+
+key = b'8bytekey'
+des = DES.new(key, DES.MODE_ECB)
+
+pt = b'12345678'
+ct = des.encrypt(pt)
+print("Ciphertext:", ct)
+print("Decrypted :", des.decrypt(ct))
