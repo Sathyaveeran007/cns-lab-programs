@@ -1,0 +1,8 @@
+def otp_encrypt(text, key):
+    return ''.join(
+        chr((ord(t) - 97 + k) % 26 + 97) for t, k in zip(text, key)
+    )
+
+plaintext = "sendmoremoney"
+key_stream = [9, 0, 1, 7, 23, 15, 21, 14, 11, 11, 2, 8, 9]
+print(otp_encrypt(plaintext, key_stream))
